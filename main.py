@@ -36,11 +36,15 @@ while True:
 
         local_tzname = local_tz.tzname(local_now)
         utc_offset = local_tz.utcoffset(local_now).seconds // 3600
-
+        
+        minute = str(time_obj.minute)
+        
+        if len(minute) == 1:
+            minute = "0" + minute
 
         bio = config.TEMPLATE.format(
             hour=time_obj.hour,
-            minute=time_obj.minute,
+            minute=minute,
             timezone=f"UTC+{utc_offset}",
             tzname=local_tzname
         )
