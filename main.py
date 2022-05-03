@@ -38,13 +38,25 @@ while True:
         utc_offset = local_tz.utcoffset(local_now).seconds // 3600
         
         minute = str(time_obj.minute)
+        month = str(time_obj.month)
+        day = str(time_obj.day)
         
         if len(minute) == 1:
             minute = "0" + minute
+        
+        if len(month) == 1:
+            month = "0" + month
+        
+        if len(day) == 1:
+            day = "0" + day
+
 
         bio = config.TEMPLATE.format(
             hour=time_obj.hour,
             minute=minute,
+            month=month,
+            day=day,
+            year=time_obj.year,
             timezone=f"UTC+{utc_offset}",
             tzname=local_tzname
         )
